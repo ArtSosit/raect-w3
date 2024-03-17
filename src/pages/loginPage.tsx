@@ -55,15 +55,16 @@ function LoginPage() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: "50vh",
-        bgcolor: "background.paper",
+
+        alignContent: "center",
       }}
     >
       <Box
         sx={{
           p: 3,
           borderRadius: "10px",
-          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+          boxShadow: "4px 5px 4px rgba(0, 0, 0, 0.1)",
+          // bgcolor: "red",
         }}
       >
         <h1>Login</h1>
@@ -71,7 +72,7 @@ function LoginPage() {
         <TextField
           inputRef={nameRef}
           label="Username"
-          variant="outlined"
+          variant="filled"
           size="medium"
         />
         <br />
