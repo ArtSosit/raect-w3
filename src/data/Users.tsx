@@ -63,5 +63,14 @@ const users = [
     avatar: "https://cdn-icons-png.flaticon.com/128/6422/6422217.png",
     country: "USA",
   },
+  {
+    id: "9",
+    username: "user9",
+    password: "password",
+    type: "user",
+    avatar:
+      "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/714.jpg",
+    country: "USA",
+  },
 ];
 export default users;
