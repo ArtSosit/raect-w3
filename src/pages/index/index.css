@@ -1,0 +1,12 @@
+/* .sticky-navbar {
+  position: sticky;
+  top: 0;
+  background-color: #ef7373;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+  z-index: 1000;
+}
+
+.content {
+  padding-top: 64px; /* Adjust based on the height of the AppBar */

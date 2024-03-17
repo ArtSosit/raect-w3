@@ -1,35 +1,96 @@
-import { Button, TextField } from "@mui/material";
-import { useRef } from "react";
+import { Button, TextField, Box } from "@mui/material";
+import { useEffect, useRef } from "react";
+import users from "../data/Users";
+import { useNavigate } from "react-router-dom";
+import bcrypt from "bcryptjs";
 
-function LocalStoragePage() {
-  let nameRef = useRef<HTMLInputElement>();
-  let ageRef = useRef<HTMLInputElement>();
+function LoginPage() {
+  const navigate = useNavigate();
+  const nameRef = useRef<HTMLInputElement>(null);
+  const passRef = useRef<HTMLInputElement>(null);
 
-  //localStorage.clear();
-  console.log(JSON.parse(localStorage.getItem("objStr")!));
+  useEffect(() => {
+    if (localStorage.getItem("username") && localStorage.getItem("password")) {
+      navigate("/index");
+    }
+  });
+
+  const changeLocalStorage = async () => {
+    const username = nameRef.current!.value;
+    const password = passRef.current!.value;
+    const user = users.find(
+      (user) => user.username === username && user.password === password
+    );
+    if (user) {
+      localStorage.setItem("username", user.username);
+      try {
+        const hashedPassword = await hashPassword(user.password);
+        localStorage.setItem("password", hashedPassword);
+      } catch (error) {
+        console.error("Error hashing password:", error);
+        // Handle error appropriately
+        return;
+      }
+      localStorage.setItem("type", user.type);
+      navigate("/index");
+    } else {
+      alert("Invalid username or password!");
+    }
+  };
+
+  const hashPassword = async (password: string): Promise<string> => {
+    try {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      return hashedPassword;
+    } catch (error) {
+      console.error("Error hashing password:", error);
+      throw error;
+    }
+  };
 
   return (
-    <>
-      Demo LocalStorage Page
-      <br />
-      <TextField inputRef={nameRef} size="small"></TextField>
-      <br />
-      <TextField inputRef={ageRef} size="small"></TextField>
-      <br />
-      <Button variant="contained" onClick={changeLocalStorage}>
-        Change Local Storage
-      </Button>
-      <br />
-      {"name: " + localStorage.getItem("name")}{" "}
-      {"age: " + localStorage.getItem("age")}{" "}
-      {"objStr: " + localStorage.getItem("objStr")}
-    </>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "50vh",
+        bgcolor: "background.paper",
+      }}
+    >
+      <Box
+        sx={{
+          p: 3,
+          borderRadius: "10px",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <h1>Login</h1>
+
+        <TextField
+          inputRef={nameRef}
+          label="Username"
+          variant="outlined"
+          size="medium"
+        />
+        <br />
+        <br />
+        <TextField
+          inputRef={passRef}
+          label="Password"
+          variant="outlined"
+          size="medium"
+          type="password"
+        />
+        <br />
+        <br />
+        <Button variant="contained" onClick={changeLocalStorage}>
+          Change Local Storage
+        </Button>
+      </Box>
+    </Box>
   );
-  function changeLocalStorage() {
-    localStorage.setItem("name", nameRef.current!.value);
-    localStorage.setItem("age", ageRef.current!.value);
-    const obj = { name: nameRef.current!.value, age: ageRef.current!.value };
-    localStorage.setItem("objStr", JSON.stringify(obj));
-  }
 }
-export default LocalStoragePage;
+
+export default LoginPage;

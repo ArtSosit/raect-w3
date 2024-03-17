@@ -14,13 +14,16 @@
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.12",
     "@mui/icons-material": "^5.15.12",
-    "@mui/material": "^5.15.12",
+    "@mui/material": "^5.15.13",
     "@mui/system": "^5.15.12",
+    "bcryptjs": "^2.4.3",
+    "bcryptjs-react": "^2.4.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
