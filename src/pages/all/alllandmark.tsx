@@ -1,11 +1,14 @@
 import React from "react";
 import landmarks from "../../data/landmarks";
 import "./AllUserPage.css";
+import { Link } from "react-router-dom";
 
 function AllLandmarkPage() {
   return (
     <div className="all-users-container">
-      <h1>All Landmarks</h1>
+      <Link to="/index" style={{ textDecoration: "none", color: "black" }}>
+        <h1>All LandMark</h1>
+      </Link>
       <div className="users-list">
         {landmarks.map((landmark) => (
           <div key={landmark.id} className="user-card">

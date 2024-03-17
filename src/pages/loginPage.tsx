@@ -86,7 +86,7 @@ function LoginPage() {
         <br />
         <br />
         <Button variant="contained" onClick={changeLocalStorage}>
-          Change Local Storage
+          Login
         </Button>
       </Box>
     </Box>

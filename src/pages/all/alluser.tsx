@@ -1,11 +1,14 @@
 import React from "react";
 import users from "../../data/Users";
 import "./AllUserPage.css"; // Import CSS file for styling
+import { Link } from "react-router-dom";
 
 function AllUserPage() {
   return (
     <div className="all-users-container">
-      <h1>All Users</h1>
+      <Link to="/index" style={{ textDecoration: "none", color: "black" }}>
+        <h1>All Users</h1>
+      </Link>
       <div className="users-list">
         {users.map(
           (user) =>
