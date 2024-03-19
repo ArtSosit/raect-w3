@@ -22,9 +22,7 @@ function AllUserPage() {
                   <div>
                     <strong>Username:</strong> {user.username}
                   </div>
-                  <div>
-                    <strong>Password:</strong> {user.password}
-                  </div>
+
                   <div>
                     <strong>Type:</strong> {user.type}
                   </div>
